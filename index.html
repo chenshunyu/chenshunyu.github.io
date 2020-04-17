@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>rmrb</title>
+	<style>
+		html,body {
+			height: 100%;
+			margin: 0;
+		}
+		.fl {
+			float: left;
+		}
+		#iframe {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<script>
+	let date = '2017-10-18'
+	let num = '01'
+	function handleChange() {
+		date = document.getElementById('date').value
+		num = '01'
+		setUrl()
+	}
+
+	function setUrl() {
+		let [ year, month, day ] = date.split('-')
+		//http://paper.people.com.cn/rmrb/page/2016-05/01/01/rmrb2016050101.pdf
+		let url = `http://paper.people.com.cn/rmrb/page/${year}-${month}/${day}/${num}/rmrb${year}${month}${day}${num}.pdf`
+		document.getElementById('iframe').src = url
+	}
+
+	function prev() {
+		num = String(100 + Number(num) - 1).substr(1)
+		setUrl()
+	}
+
+	function next() {
+		num = String(100 + Number(num) + 1).substr(1)
+		setUrl()
+	}
+
+	window.onload = function() {
+		setUrl()
+		document.getElementById('date').value = date
+	}
+</script>
+<body>
+	<div class="fl" style="width:160px;">
+		<div>
+			<input type="date" id="date" onchange="handleChange()">
+		</div>
+		<div>
+			<a href="javascript:prev();">上一版</a>
+			<a href="javascript:next();">下一版</a>
+		</div>
+	</div>
+	<div style="margin-left:160px;height:100%;">
+		<iframe src="" frameborder="0" id="iframe"></iframe>
+	</div>
+</body>
+</html>
