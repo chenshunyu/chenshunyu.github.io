@@ -8,12 +8,30 @@
 			height: 100%;
 			margin: 0;
 		}
-		.fl {
+		.c {
 			float: left;
+			width: 160px;
 		}
-		#iframe {
-			width: 100%;
+		.d {
+			margin-left:160px;
+			height:100%;
+		}
+		#image {
 			height: 100%;
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+			.c {
+				float: none;
+				width: auto;
+			}
+			.d {
+				margin-left: 0;
+				height: auto;
+			}
+			#image {
+				height: auto;
+				width: 100%;
+			}
 		}
 	</style>
 </head>
@@ -28,9 +46,9 @@
 
 	function setUrl() {
 		let [ year, month, day ] = date.split('-')
-		//http://paper.people.com.cn/rmrb/page/2016-05/01/01/rmrb2016050101.pdf
-		let url = `http://paper.people.com.cn/rmrb/page/${year}-${month}/${day}/${num}/rmrb${year}${month}${day}${num}.pdf`
-		document.getElementById('iframe').src = url
+		//http://data.people.com.cn/pic/101p/1992/01/1992011501.jpg
+		let url = `http://data.people.com.cn/pic/101p/${year}/${month}/${year}${month}${day}${num}.jpg`
+		document.getElementById('image').src = url
 	}
 
 	function prev() {
@@ -49,7 +67,7 @@
 	}
 </script>
 <body>
-	<div class="fl" style="width:160px;">
+	<div class="c">
 		<div>
 			<input type="date" id="date" onchange="handleChange()">
 		</div>
@@ -58,8 +76,8 @@
 			<a href="javascript:next();">下一版</a>
 		</div>
 	</div>
-	<div style="margin-left:160px;height:100%;">
-		<iframe src="" frameborder="0" id="iframe"></iframe>
+	<div class="d">
+		<img src="" alt="版面" id="image">
 	</div>
 </body>
 </html>
